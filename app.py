@@ -53,13 +53,15 @@ ATTRACTIONS = [
 ## The key attribute enables you to retrieve the data entered for that widget from st.session_state 
 ## ------------------------------------------------------------------------------------
 
-st.title("What kind of attraction do you wish to visit at GBTB?") 
+st.title("What kind of attraction do you wish to visit at GBTB?") # 'st' stands for streamlit (st.title -> same function as a print)
+# streamlit is to access specific UXs
 
 st.multiselect(
     label="Select your category",
     options=ALL_CATEGORIES,
     key="user_selection" 
     )
+# the goal is to have multiple 'st.multiselect'
 
 ### Display user's choices as a debugging hint 
 ### This is stored in a datatype similar to a list
