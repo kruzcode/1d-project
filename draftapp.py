@@ -67,12 +67,13 @@ st.slider("Queue Preference", min_value=0, max_value=120, value=30, key='queue_s
 st.write(f"Queue time:{st.session_state.queue_slide}")
 
 def queue_cat(t):
+    cat = []
+    if t >= 0:
+        cat.append('short')
+    if t > 40:
+        cat.append('medium')
     if t > 80:
-        cat = 'long'
-    elif t > 40:
-        cat = 'medium'
-    else:
-        cat = 'short'
+        cat.append('long')
     return cat
 
 def reset_choices():
@@ -89,9 +90,10 @@ def reset_choices():
 def get_recommendations(attractions_list, theme_choice, queue_choice): #edited
     out = []
     for theme in theme_choice:
-        for attraction in attractions_list:
-            if (theme in attraction["theme"]) and (queue_choice in attraction['queue_time']):
-                out.append(attraction)
+        for time in queue_choice:
+            for attraction in attractions_list:
+                if (theme in attraction["theme"]) and (time in attraction['queue_time']):
+                    out.append(attraction)
     return out
         
 if st.button("Get me recommendations"):
