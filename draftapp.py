@@ -59,8 +59,8 @@ st.multiselect(
 ### This is stored in a datatype similar to a list
 #st.write(st.session_state.user_selection)
 
-queue_slide = st.slider("Queue Preference", min_value=0, max_value=120, value=30)
-st.write(f"Queue time:{queue_slide}")
+st.slider("Queue Preference", min_value=0, max_value=120, value=30, key='queue_slide')
+st.write(f"Queue time:{st.session_state.queue_slide}")
 
 def queue_cat(t):
     if t < 80:
@@ -73,7 +73,7 @@ def queue_cat(t):
 
 def reset_choices():
     st.session_state.theme_filter = []
-    queue_slide = st.slider("Queue Preference", min_value=0, max_value=120, value=30)
+    st.session_state.queue_slide = 30
 ## Calculation -------------------------------------------------------------------------
 ## Shows you the code to 
 ## 1) declare a button and detect if it is clicked through the if-statement 
@@ -94,7 +94,7 @@ def get_recommendations(attractions_list, theme_choice, queue_choice): #edited
         
 if st.button("Get me recommendations"):
     options = list( st.session_state.theme_filter )  
-    queue_time = queue_cat(queue_slide)
+    queue_time = queue_cat(st.session_state.queue_slide)
     recs = get_recommendations(ATTRACTIONS, options, queue_time)
     st.table(recs)
 
