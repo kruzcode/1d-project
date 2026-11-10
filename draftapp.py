@@ -95,7 +95,8 @@ def get_recommendations(attractions_list, theme_choice, queue_choice): #edited
                 if (theme in attraction["theme"]) and (time in attraction['queue_time']):
                     out.append(attraction)
     return out
-        
+rec = ATTRACTIONS
+st.table(recs)     
 if st.button("Get me recommendations"):
     options = list( st.session_state.theme_filter )  
     queue_time = queue_cat(st.session_state.queue_slide)
