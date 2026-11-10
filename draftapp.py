@@ -67,9 +67,9 @@ st.slider("Queue Preference", min_value=0, max_value=120, value=30, key='queue_s
 st.write(f"Queue time:{st.session_state.queue_slide}")
 
 def queue_cat(t):
-    if t < 80:
+    if t > 80:
         cat = 'long'
-    elif t < 40:
+    elif t > 40:
         cat = 'medium'
     else:
         cat = 'short'
