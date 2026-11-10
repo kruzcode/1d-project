@@ -88,7 +88,7 @@ def get_recommendations(attractions_list, theme_choice, queue_choice): #edited
         for attraction in attractions_list:
             if (theme in attraction["theme"]) and (queue_choice in attraction['queue_time']):
                 out.append(attraction)
-            elif (theme in attraction["theme"]) ^ (queue_choice in attraction['queue_time'])
+            elif (theme in attraction["theme"]) ^ (queue_choice in attraction['queue_time']):
                 out.append(attraction)
     return out
         
