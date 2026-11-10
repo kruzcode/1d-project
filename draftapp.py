@@ -65,7 +65,7 @@ st.write(f"Queue time:{queue_slide}")
 def queue_cat(t):
     if t < 80:
         cat = 'long'
-    elif: t < 40:
+    elif t < 40:
         cat = 'medium'
     else:
         cat = 'short'
