@@ -89,7 +89,7 @@ def get_recommendations(attractions_list, theme_choice, queue_choice): #edited
             if (theme in attraction["theme"]) and (queue_choice in attraction['queue_time']):
                 out.append(attraction)
             else:
-                return "Does not exist"
+                return ["Does not exist"]
     return out
         
 if st.button("Get me recommendations"):
