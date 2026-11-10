@@ -55,6 +55,7 @@ st.title("Welcome to Panda Theme Park! Please enjoy our attractions!") # 'st' st
 st.multiselect(
     label="Theme Filter",
     options=all_themes,
+    select_all=False,
     key="theme_filter" 
     )
 # the goal is to have multiple 'st.multiselect'
@@ -99,9 +100,8 @@ def get_recommendations(attractions_list, theme_choice, queue_choice): #edited
 options = list( st.session_state.theme_filter )  
 queue_time = queue_cat(st.session_state.queue_slide)
 if options == []:
-    recs = ATTRACTIONS
-else:
-    recs = get_recommendations(ATTRACTIONS, options, queue_time)
+    options=all_themes
+recs = get_recommendations(ATTRACTIONS, options, queue_time)
 st.table(recs)    
 
 st.button("Reset Selections", on_click=reset_choices)
