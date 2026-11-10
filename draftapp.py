@@ -23,7 +23,7 @@ import streamlit as st
 all_themes = ['nature', 'great views', 'leisure']
 ATTRACTIONS = [ 
     { "name"    : "flower dome", 
-      "theme": 'nature', "queue_time": 'long',
+      "theme": ['nature', 'leisure'], "queue_time": 'long',
       "description" : "showcasing flowers from all over the world"
     }, 
         { "name"    : "jizzler's ring", 
