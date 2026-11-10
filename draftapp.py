@@ -84,7 +84,7 @@ def reset_choices():
 ## ------------------------------------------------------------------------------------ 
 def get_recommendations(attractions_list, theme_choice, queue_choice): #edited
     out = []
-    for theme in theme_choices:
+    for theme in theme_choice:
         for attraction in attractions_list:
             if (theme in attraction["theme"]) and (queue_choice in attraction['queue_time']):
                 out.append(attraction)
