@@ -26,6 +26,10 @@ ATTRACTIONS = [
       "theme": 'nature', "queue_time": 'long',
       "description" : "showcasing flowers from all over the world"
     }, 
+        { "name"    : "jizzler's ring", 
+      "theme": 'nature', "queue_time": 'short',
+      "description" : "showcasing flowers from all over the world"
+    }, 
     { "name"    : "skywalk", 
       "theme":'great views', "queue_time": 'short',
       "description" : "get a great view of the garden from here"
