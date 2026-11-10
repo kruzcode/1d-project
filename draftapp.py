@@ -98,8 +98,10 @@ def get_recommendations(attractions_list, theme_choice, queue_choice): #edited
 
 options = list( st.session_state.theme_filter )  
 queue_time = queue_cat(st.session_state.queue_slide)
-recs = get_recommendations(ATTRACTIONS, options, queue_time)
-
+if options == []:
+    recs = ATTRACTIONS
+else:
+    recs = get_recommendations(ATTRACTIONS, options, queue_time)
 st.table(recs)    
 
 st.button("Reset Selections", on_click=reset_choices)
