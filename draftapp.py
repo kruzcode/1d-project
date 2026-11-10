@@ -65,7 +65,7 @@ st.multiselect(
 #st.write(st.session_state.user_selection)
 
 st.slider("Queue Preference", min_value=0, max_value=120, value=120, key='queue_slide')
-st.write(f"Queue time:{st.session_state.queue_slide}")
+st.write(f"Queue time: {st.session_state.queue_slide}mins")
 
 def queue_cat(t):
     cat = []
