@@ -35,7 +35,7 @@ ATTRACTIONS = [
       "description" : "get a great view of the garden from here"
     },
       { "name"    : "goon lagoon", 
-      "theme":['leisure','nature'], "queue_time": 'medium',
+      "theme":'leisure, nature', "queue_time": 'medium',
       "description" : "get a great view of the garden from here"
     }
 ]
