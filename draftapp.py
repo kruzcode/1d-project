@@ -73,7 +73,7 @@ def queue_cat(t):
 
 def reset_choices():
     st.session_state.theme_filter = []
-    st.session_state["Queue Preference"] = 30
+    st.session_state.queue_slide = 30
 ## Calculation -------------------------------------------------------------------------
 ## Shows you the code to 
 ## 1) declare a button and detect if it is clicked through the if-statement 
