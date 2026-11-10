@@ -64,7 +64,7 @@ st.multiselect(
 ### This is stored in a datatype similar to a list
 #st.write(st.session_state.user_selection)
 
-st.slider("Queue Preference", min_value=0, max_value=120, value=30, key='queue_slide')
+st.slider("Queue Preference", min_value=0, max_value=120, value=120, key='queue_slide')
 st.write(f"Queue time:{st.session_state.queue_slide}")
 
 def queue_cat(t):
@@ -79,7 +79,7 @@ def queue_cat(t):
 
 def reset_choices():
     st.session_state.theme_filter = []
-    st.session_state.queue_slide = 30
+    st.session_state.queue_slide = 120
 ## Calculation -------------------------------------------------------------------------
 ## Shows you the code to 
 ## 1) declare a button and detect if it is clicked through the if-statement 
