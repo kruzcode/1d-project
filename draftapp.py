@@ -88,20 +88,32 @@ def reset_choices():
 ## 4) display the outcome in a streamlit table using a python dictionary 
 ## 5) How do you declare a button to execute a function when clicked
 ## ------------------------------------------------------------------------------------ 
-def get_recommendations(attractions_list, theme_choice, queue_choice): #edited
+def filter_recommendations(attractions_list, theme_choice, queue_choice): #edited
     out = []
-    for theme in theme_choice:
-        for time in queue_choice:
+    for time in queue_choice:
+        for theme in theme_choice:
             for attraction in attractions_list:
                 if (theme in attraction["theme"]) and (time in attraction['queue_time']):
                     out.append(attraction)
     return out
 
+def find_recommendations(attractions_list, theme_choice, queue_choice): #edited
+    out = []
+    for time in queue_choice:
+        for attraction in attractions_list:
+            check_theme = attraction["theme"].sort()
+            sorted_theme_choice = theme_choice.sort()
+            if (check_theme == sorted_theme_choice) and (time in attraction['queue_time']):
+                out.append(attraction)
+    return out
+
+
+
 options = list( st.session_state.theme_filter )  
 queue_time = queue_cat(st.session_state.queue_slide)
 if options == []:
     options=all_themes
-recs = get_recommendations(ATTRACTIONS, options, queue_time)
+recs = filter_recommendations(ATTRACTIONS, options, queue_time)
 st.table(recs)    
 
 st.button("Reset Selections", on_click=reset_choices)
