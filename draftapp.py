@@ -151,6 +151,7 @@ queue_time = queue_cat(st.session_state.queue_slide)
 if options == []:
     options=all_themes
     table_2 = 'Our Attractions'
+    top_recs = []
 else:
     st.write("Your Top Recommendations")
     top_recs = find_recommendations(ATTRACTIONS, options, queue_time)
