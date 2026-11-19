@@ -135,7 +135,7 @@ def find_recommendations(attractions_list, theme_choice, queue_choice): #edited
                 out.append(attraction)
     return out
 
-toggle = st.toggle("Find/Filter")
+toggle = st.toggle("By theme/ By queue time")
 
 options = list( st.session_state.theme_filter )  
 queue_time = queue_cat(st.session_state.queue_slide)
@@ -146,7 +146,10 @@ st.write("Your Top Recommendation")
 top_recs = find_recommendations(ATTRACTIONS, options, queue_time)
 st.table(top_recs)
 st.write("Your Second Recommendation")
-second_recs = filter_recommendations(ATTRACTIONS, options, queue_time, top_recs)
+if toggle:
+    second_recs = filter_recommendations(ATTRACTIONS, options, queue_time, top_recs)
+else: 
+    second_recs = filter_recommendations(ATTRACTIONS, queue_time, options, top_recs)
 st.table(second_recs)    
 
 st.button("Reset Selections", on_click=reset_choices)
