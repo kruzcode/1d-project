@@ -135,7 +135,7 @@ def find_recommendations(attractions_list, theme_choice, queue_choice): #edited
             out.append(attraction)
     return out
 
-toggle = st.toggle("Activate feature")
+toggle = st.toggle("Find/Filter")
 
 options = list( st.session_state.theme_filter )  
 queue_time = queue_cat(st.session_state.queue_slide)
