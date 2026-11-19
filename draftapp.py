@@ -154,9 +154,9 @@ if options == []:
 else:
     st.write("Your Top Recommendations")
     top_recs = find_recommendations(ATTRACTIONS, options, queue_time)
+    st.table(top_recs)
     table_2 = 'You might also like...'
 
-st.table(top_recs)
 st.write(table_2)
 if toggle:
     second_recs = filter_recommendations_queue(ATTRACTIONS, options, queue_time, top_recs)
