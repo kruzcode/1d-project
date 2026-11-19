@@ -150,11 +150,14 @@ options = list( st.session_state.theme_filter )
 queue_time = queue_cat(st.session_state.queue_slide)
 if options == []:
     options=all_themes
+    table_2 = 'Our Attractions'
+else:
+    st.write("Your Top Recommendations")
+    top_recs = find_recommendations(ATTRACTIONS, options, queue_time)
+    table_2 = 'You might also like...'
 
-st.write("Your Top Recommendations")
-top_recs = find_recommendations(ATTRACTIONS, options, queue_time)
 st.table(top_recs)
-st.write("Your Second Recommendations")
+st.write(table_2)
 if toggle:
     second_recs = filter_recommendations_queue(ATTRACTIONS, options, queue_time, top_recs)
 else:
