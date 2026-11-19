@@ -121,7 +121,7 @@ def filter_recommendations(attractions_list, theme_choice, queue_choice, top_rec
     for time in queue_choice:                      
         for theme in theme_choice:                
             for attraction in attractions_list:    
-                if (theme in attraction["theme"]) and (time in attraction['queue_time']) and (attraction not in out) and (any(out) not in top_rec):
+                if (theme in attraction["theme"]) and (time in attraction['queue_time']) and (attraction not in out) and ( attraction not in top_rec):
                     out.append(attraction)       
     return out
 
