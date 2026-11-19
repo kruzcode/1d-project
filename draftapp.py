@@ -142,14 +142,11 @@ queue_time = queue_cat(st.session_state.queue_slide)
 if options == []:
     options=all_themes
 
-st.write("Your Top Recommendation")
+st.write("Your Top Recommendations")
 top_recs = find_recommendations(ATTRACTIONS, options, queue_time)
 st.table(top_recs)
-st.write("Your Second Recommendation")
-if toggle == True:
-    second_recs = filter_recommendations(ATTRACTIONS, options, queue_time, top_recs)
-else: 
-    second_recs = filter_recommendations(ATTRACTIONS, queue_time, options, top_recs)
+st.write("Your Second Recommendations")
+second_recs = filter_recommendations(ATTRACTIONS, queue_time, options, top_recs)
 st.table(second_recs)    
 
 st.button("Reset Selections", on_click=reset_choices)
