@@ -46,6 +46,5 @@ ATTRACTIONS = [
     }
   
 ]
-
-# if not in ATTRACTIONS:
-#   return 'No options available.' # display or wtv nonsense
+if not in ATTRACTIONS:
+return 'No options available.' # display or wtv nonsense
