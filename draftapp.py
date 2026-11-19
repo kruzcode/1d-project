@@ -22,7 +22,7 @@ import streamlit as st
 
 all_themes = ['immersive', 'thrill', 'sightseeing', 'relaxation']
 all_height = ['No height restrictions', 'Over 81 cm OK', 'Over 90 cm OK', 'Over 102 cm OK']
-attractions = [
+ATTRACTIONS = [
     {
         "name": "Mickey & Minnie's Runaway Railway",
         "theme": "thrill, immersive, sightseeing", "queue_time": "short",
