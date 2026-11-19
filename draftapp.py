@@ -95,7 +95,7 @@ def filter_recommendations(attractions_list, theme_choice, queue_choice):
             for attraction in attractions_list:    
                 if (theme in attraction["theme"]) and (time in attraction['queue_time']):
                     out.append(attraction)       
-    return set(out)
+    return out
 
 def find_recommendations(attractions_list, theme_choice, queue_choice): #edited
     out = []
