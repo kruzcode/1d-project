@@ -116,7 +116,16 @@ def reset_choices():
 ## 4) display the outcome in a streamlit table using a python dictionary 
 ## 5) How do you declare a button to execute a function when clicked
 ## ------------------------------------------------------------------------------------ 
-def filter_recommendations(attractions_list, theme_choice, queue_choice, top_rec):
+def filter_recommendations_queue(attractions_list, theme_choice, queue_choice, top_rec):
+    out = []
+    for time in queue_choice:                      
+        for theme in theme_choice:                
+            for attraction in attractions_list:    
+                if (theme in attraction["theme"]) and (time in attraction['queue_time']) and (attraction not in out) and ( attraction not in top_rec):
+                    out.append(attraction)       
+    return out
+
+def filter_recommendations_theme(attractions_list, theme_choice, queue_choice, top_rec):
     out = []
     for theme in theme_choice:                      
         for time in queue_choice:                
@@ -124,7 +133,7 @@ def filter_recommendations(attractions_list, theme_choice, queue_choice, top_rec
                 if (theme in attraction["theme"]) and (time in attraction['queue_time']) and (attraction not in out) and ( attraction not in top_rec):
                     out.append(attraction)       
     return out
-
+    
 def find_recommendations(attractions_list, theme_choice, queue_choice): #edited
     out = []
     for time in queue_choice:
@@ -146,7 +155,10 @@ st.write("Your Top Recommendations")
 top_recs = find_recommendations(ATTRACTIONS, options, queue_time)
 st.table(top_recs)
 st.write("Your Second Recommendations")
-second_recs = filter_recommendations(ATTRACTIONS, queue_time, options, top_recs)
+if toggle:
+    second_recs = filter_recommendations_queue(ATTRACTIONS, options, queue_time, top_recs)
+else:
+    second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs)
 st.table(second_recs)    
 
 st.button("Reset Selections", on_click=reset_choices)
