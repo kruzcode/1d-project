@@ -90,12 +90,12 @@ def reset_choices():
 ## ------------------------------------------------------------------------------------ 
 def filter_recommendations(attractions_list, theme_choice, queue_choice):
     out = []
-    for theme in theme_choice:                      
-        for time in queue_choice:                
+    for time in queue_choice:                      
+        for theme in theme_choice:                
             for attraction in attractions_list:    
                 if (theme in attraction["theme"]) and (time in attraction['queue_time']):
                     out.append(attraction)       
-    return out
+    return set(out)
 
 def find_recommendations(attractions_list, theme_choice, queue_choice): #edited
     out = []
