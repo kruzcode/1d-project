@@ -146,7 +146,7 @@ st.write("Your Top Recommendation")
 top_recs = find_recommendations(ATTRACTIONS, options, queue_time)
 st.table(top_recs)
 st.write("Your Second Recommendation")
-if toggle:
+if toggle == True:
     second_recs = filter_recommendations(ATTRACTIONS, options, queue_time, top_recs)
 else: 
     second_recs = filter_recommendations(ATTRACTIONS, queue_time, options, top_recs)
