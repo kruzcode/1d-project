@@ -135,13 +135,16 @@ def find_recommendations(attractions_list, theme_choice, queue_choice): #edited
             out.append(attraction)
     return out
 
-
+st.button("Filter", key="Filter_Find_Toggle", icon="Find")
 
 options = list( st.session_state.theme_filter )  
 queue_time = queue_cat(st.session_state.queue_slide)
 if options == []:
     options=all_themes
-recs = filter_recommendations(ATTRACTIONS, options, queue_time)
+if st.session_state.Filter_Find_Toggle == True:
+    recs = filter_recommendations(ATTRACTIONS, options, queue_time)
+else: 
+    recs = find_recommendations(ATTRACTIONS, options, queue_time)
 st.table(recs)    
 
 st.button("Reset Selections", on_click=reset_choices)
