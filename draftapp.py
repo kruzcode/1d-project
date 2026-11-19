@@ -108,7 +108,7 @@ def find_recommendations(attractions_list, theme_choice, queue_choice): #edited
     return out
 
 
-
+recs = []
 options = list( st.session_state.theme_filter )  
 queue_time = queue_cat(st.session_state.queue_slide)
 if options == []:
