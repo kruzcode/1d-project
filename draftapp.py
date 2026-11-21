@@ -69,6 +69,14 @@ ATTRACTIONS = [
 st.title("Welcome to Panda Theme Park! Please enjoy our attractions!") # 'st' stands for streamlit (st.title -> same function as a print)
 # streamlit is to access specific UXs
 
+def reset_choices():
+    st.session_state.theme_filter = []
+    st.session_state.queue_slide = 120
+    st.session_state.height_range = (0,250)
+    st.session_state.toggle = False
+
+reset_choice
+
 @st.dialog("Filters")
 def filter_dialog():
     st.multiselect(
@@ -114,10 +122,6 @@ def queue_cat(t):
         cat.append('long')
     return cat
 
-def reset_choices():
-    st.session_state.theme_filter = []
-    st.session_state.queue_slide = 120
-    st.session_state.height_range = (0,250)
 def filter_recommendations_queue(attractions_list, theme_choice, queue_choice, top_rec):
     out = []
     for time in queue_choice:                      
