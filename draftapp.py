@@ -69,15 +69,27 @@ ATTRACTIONS = [
 st.title("Welcome to Panda Theme Park! Please enjoy our attractions!") # 'st' stands for streamlit (st.title -> same function as a print)
 # streamlit is to access specific UXs
 
-st.multiselect(
-    label="Theme Filter",
-    options=all_themes,
-    select_all=False,
-    key="theme_filter" 
-    )
-queue_slide = st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=120, key='queue_slide')
-height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=(0,250), key='height_range')
-toggle = st.toggle("Sort by queue time")
+@st.dialog("Filters")
+def filter_dialog():
+    st.multiselect(
+        label="Theme Filter",
+        options=all_themes,
+        select_all=False,
+        key="theme_filter" 
+        )
+    queue_slide = st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=120, key='queue_slide')
+    height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=(0,250), key='height_range')
+    toggle = st.toggle("Sort by queue time", key="toggle")
+    if st.button("Apply", type="primary"):
+        st.rerun()
+
+if st.button("⚙️ Filters", key="open_filters"):
+    filter_dialog()
+
+# the dialog's widgets only exist inside the function, so these bring your names back to the main page
+queue_slide = st.session_state.queue_slide
+height_range = st.session_state.height_range
+toggle = st.session_state.toggle
 
 def attraction_height(r):
     str = r["height_restriction"].replace("cm", "").strip()
