@@ -69,7 +69,7 @@ ATTRACTIONS = [
 st.title("Welcome to Panda Theme Park! Please enjoy our attractions!") # 'st' stands for streamlit (st.title -> same function as a print)
 # streamlit is to access specific UXs
 st.image(
-    "kung-fu-panda-po.gif")
+    "po.jpg")
 
 init = {"theme_filter": [], "queue_slide": 120, "height_range": (0, 250), "toggle": False}
 saved = st.session_state.setdefault("_saved", dict(init))
