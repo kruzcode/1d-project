@@ -69,13 +69,13 @@ ATTRACTIONS = [
 st.title("Welcome to Panda Theme Park! Please enjoy our attractions!") # 'st' stands for streamlit (st.title -> same function as a print)
 # streamlit is to access specific UXs
 
+@st.dialog("Filter")
 st.multiselect(
     label="Theme Filter",
     options=all_themes,
     select_all=False,
     key="theme_filter" 
     )
-
 queue_slide = st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=120, key='queue_slide')
 height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=(0,250), key='height_range')
 toggle = st.toggle("Sort by queue time")
