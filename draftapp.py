@@ -75,7 +75,7 @@ def reset_choices():
     st.session_state.height_range = (0,250)
     st.session_state.toggle = False
 
-reset_choice
+reset_choices()
 
 @st.dialog("Filters")
 def filter_dialog():
