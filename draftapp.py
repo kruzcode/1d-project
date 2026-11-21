@@ -87,7 +87,7 @@ def attraction_height(r):
 def height_restriction(height_ran, height_res):
     x1, x2 = height_res
     y1, y2 = height_ran
-    if (x1 >= y1) and (x2 <= y2):
+    if (x1 <= y1) and (x2 >= y2):
         return True
     else:
         return False
