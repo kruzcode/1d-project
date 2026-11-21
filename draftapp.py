@@ -29,13 +29,13 @@ ATTRACTIONS = [
     },
     {
         "name": "Buzz Lightyear's Star Command Drop",
-        "theme": "thrill, sightseeing", "queue_time": "long",
+        "theme": "thrill", "queue_time": "long",
         "height_restriction": "102-250 cm",
         "description": "A thrilling drop-tower ride where riders help Buzz launch into hyperspace to defend the Gamma Quadrant from Emperor Zurg."
     },
     {
         "name": "Mickey's PhilharMagic",
-        "theme": "immersive, relaxation", "queue_time": "short",
+        "theme": "relaxation", "queue_time": "short",
         "height_restriction": "0-250 cm",
         "description": "A 3D musical film experience where Donald Duck steals Mickey's sorcerer hat, sending the audience tumbling through classic animated worlds."
     },
@@ -47,7 +47,7 @@ ATTRACTIONS = [
     },
     {
         "name": "Toy Story Mania!",
-        "theme": "immersive, relaxation", "queue_time": "long",
+        "theme": "immersive", "queue_time": "long",
         "height_restriction": "0-250 cm",
         "description": "An interactive 4D carnival-game attraction where riders wear 3D glasses and launch virtual darts, rings, and pies at targets."
     },
