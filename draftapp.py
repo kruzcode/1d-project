@@ -85,12 +85,13 @@ def reset_choices():
 
 @st.dialog("Filters")
 def filter_dialog():
-    st.multiselect(
-        label="Theme Filter",
-        options=all_themes,
-        select_all=False,
-        key="theme_filter" 
-        )
+     st.pills(
+            "Themes",
+            options=all_themes, 
+            selection_mode="multi",
+            label_visibility="collapsed",
+            key="theme_filter"
+            )
     queue_slide = st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=120, key='queue_slide')
     height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=(0,250), key='height_range')
     toggle = st.toggle("Sort by queue time", key="toggle")
