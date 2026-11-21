@@ -69,10 +69,14 @@ ATTRACTIONS = [
 st.title("Welcome to Panda Theme Park! Please enjoy our attractions!") # 'st' stands for streamlit (st.title -> same function as a print)
 # streamlit is to access specific UXs
 
-st.session_state.theme_filter = []
-st.session_state.queue_slide = 120
-st.session_state.height_range = (0,250)
-st.session_state.toggle = False
+if "theme_filter" not in st.session_state:
+    st.session_state.theme_filter = []
+if "queue_slide" not in st.session_state:
+    st.session_state.queue_slide = 120
+if "height_range" not in st.session_state:
+    st.session_state.height_range = (0, 250)
+if "toggle" not in st.session_state:
+    st.session_state.toggle = False
 
 def reset_choices():
     st.session_state.theme_filter = []
