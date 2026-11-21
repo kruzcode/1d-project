@@ -86,6 +86,9 @@ def filter_dialog():
 if st.button("⚙️ Filters", key="open_filters"):
     filter_dialog()
 
+queue_slide = st.session_state.queue_slide
+height_range = st.session_state.height_range
+toggle = st.session_state.toggle
 
 
 def attraction_height(r):
