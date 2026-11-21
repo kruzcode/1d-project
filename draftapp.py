@@ -153,7 +153,7 @@ def find_recommendations(attractions_list, theme_choice, queue_choice): #edited
         for attraction in attractions_list:
             check_theme = sorted(attraction["theme"])
             sorted_theme_choice = sorted(", ".join(theme_choice))
-            if (check_theme == sorted_theme_choice) and (time in attraction['queue_time']):
+            if (check_theme == sorted_theme_choice) and (time in attraction['queue_time']) and height_restriction(height_range, attraction_height(attraction)):
                 out.append(attraction)
     return out
 
