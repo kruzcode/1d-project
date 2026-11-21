@@ -77,7 +77,7 @@ st.multiselect(
     )
 
 queue_slide = st.slider("Queue Preference (min)", min_value=0, max_value=120, value=120, key='queue_slide')
-height_range = st.slider("Height Range (cm)", min_value=0, max_value=200, value=(150,170), key='height_range')
+height_range = st.slider("Height Range (cm)", min_value=0, max_value=250, value=(150,170), key='height_range')
 
 def attraction_height(r):
     str = r["height_restriction"].replace("cm", "").strip()
@@ -105,7 +105,7 @@ def queue_cat(t):
 def reset_choices():
     st.session_state.theme_filter = []
     st.session_state.queue_slide = 120
-
+    height_range = (0,250)
 def filter_recommendations_queue(attractions_list, theme_choice, queue_choice, top_rec):
     out = []
     for time in queue_choice:                      
