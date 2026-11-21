@@ -86,10 +86,7 @@ def filter_dialog():
 if st.button("⚙️ Filters", key="open_filters"):
     filter_dialog()
 
-# the dialog's widgets only exist inside the function, so these bring your names back to the main page
-queue_slide = st.session_state.queue_slide
-height_range = st.session_state.height_range
-toggle = st.session_state.toggle
+
 
 def attraction_height(r):
     str = r["height_restriction"].replace("cm", "").strip()
