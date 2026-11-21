@@ -69,7 +69,6 @@ ATTRACTIONS = [
 st.title("Welcome to Panda Theme Park! Please enjoy our attractions!") # 'st' stands for streamlit (st.title -> same function as a print)
 # streamlit is to access specific UXs
 
-@st.dialog("Filter")
 st.multiselect(
     label="Theme Filter",
     options=all_themes,
