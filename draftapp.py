@@ -78,6 +78,7 @@ st.multiselect(
 
 queue_slide = st.slider("Queue Preference", min_value=0, max_value=120, value=120, key='queue_slide')
 st.write(f"Queue time: {queue_slide}mins")
+height_range = st.slider("Height Range", min_value=0, max_value=200, value=(150,170), key='height_range')
 
 def queue_cat(t):
     cat = []
