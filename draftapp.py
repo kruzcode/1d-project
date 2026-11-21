@@ -69,9 +69,9 @@ ATTRACTIONS = [
 st.title("Welcome to Panda Theme Park! Please enjoy our attractions!") # 'st' stands for streamlit (st.title -> same function as a print)
 # streamlit is to access specific UXs
 
-defaults = {"theme_filter": [], "queue_slide": 120, "height_range": (0, 250), "toggle": False}
-saved = st.session_state.setdefault("_saved", dict(defaults))
-for k in defaults:
+init = {"theme_filter": [], "queue_slide": 120, "height_range": (0, 250), "toggle": False}
+saved = st.session_state.setdefault("_saved", dict(init))
+for k in init:
     if k in st.session_state:
         saved[k] = st.session_state[k]
     else:
