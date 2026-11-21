@@ -78,6 +78,7 @@ st.multiselect(
 
 queue_slide = st.slider("Queue Preference (min)", min_value=0, max_value=120, value=120, key='queue_slide')
 height_range = st.slider("Height Range (cm)", min_value=0, max_value=250, value=(0,250), key='height_range')
+toggle = st.toggle("Sort by queue time")
 
 def attraction_height(r):
     str = r["height_restriction"].replace("cm", "").strip()
@@ -133,8 +134,6 @@ def find_recommendations(attractions_list, theme_choice, queue_choice): #edited
             if (check_theme == sorted_theme_choice) and (time in attraction['queue_time']):
                 out.append(attraction)
     return out
-
-toggle = st.toggle("Sort by queue time")
 
 options = list( st.session_state.theme_filter )  
 queue_time = queue_cat(st.session_state.queue_slide)
