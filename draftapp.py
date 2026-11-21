@@ -69,21 +69,19 @@ ATTRACTIONS = [
 st.title("Welcome to Panda Theme Park! Please enjoy our attractions!") # 'st' stands for streamlit (st.title -> same function as a print)
 # streamlit is to access specific UXs
 
-'''init = {"theme_filter": [], "queue_slide": 120, "height_range": (0, 250), "toggle": False}
+init = {"theme_filter": [], "queue_slide": 120, "height_range": (0, 250), "toggle": False}
 saved = st.session_state.setdefault("_saved", dict(init))
 for k in init:
     if k in st.session_state:
         saved[k] = st.session_state[k]
     else:
-        st.session_state[k] = saved[k]'''
+        st.session_state[k] = saved[k]
 
 def reset_choices():
     st.session_state.theme_filter = []
     st.session_state.queue_slide = 120
     st.session_state.height_range = (0,250)
     st.session_state.toggle = False
-
-reset_choices()
 
 @st.dialog("Filters")
 def filter_dialog():
@@ -97,9 +95,6 @@ def filter_dialog():
     height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=(0,250), key='height_range')
     toggle = st.toggle("Sort by queue time", key="toggle")
     if st.button("Apply", type="primary"):
-        queue_slide = st.session_state.queue_slide
-        height_range = st.session_state.height_range
-        toggle = st.session_state.toggle
         st.rerun()
 
 if st.button("⚙️ Filters", key="open_filters"):
