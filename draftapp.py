@@ -71,13 +71,16 @@ st.title("Welcome to Panda Theme Park! Please enjoy our attractions!") # 'st' st
 st.image(
     "po.jpg")
 
-init = {"theme_filter": [], "queue_slide": 120, "height_range": (0, 250), "toggle": False}
-saved = st.session_state.setdefault("_saved", dict(init))
-for k in init:
-    if k in st.session_state:
-        saved[k] = st.session_state[k]
-    else:
-        st.session_state[k] = saved[k]
+init = {
+    "theme_filter": [],
+    "queue_slide": 120,
+    "height_range": (0, 250),
+    "toggle": False,
+}
+
+for key, default_val in init.items():
+    if key not in st.session_state:
+        st.session_state[key] = default_val
 
 def reset_choices():
     st.session_state.theme_filter = []
