@@ -166,7 +166,6 @@ if options == []:
     table_2 = 'Our Attractions'
     top_recs = []
 else:
-    st.write("Your Top Recommendations")
     top_recs = find_recommendations(ATTRACTIONS, options, queue_time)
     if top_recs:
         st.write("Your Top Recommendations")
