@@ -76,6 +76,9 @@ DEFAULTS = {
     "height_range": (0, 250),
     "toggle": False,
 }
+for key in DEFAULTS:
+    if key not in st.session_state:
+        st.session_state[key] = DEFAULTS[key]
 
 def init_dialogue():          
     st.session_state.theme_filter = []
@@ -217,6 +220,7 @@ for attraction in second_recs:
             st.caption(f"⏱️ **Queue:** {attraction['queue_time']}")
         with col3:
             st.caption(f"📏 **Height:** {attraction['height_restriction']}")
+
 
 
 
