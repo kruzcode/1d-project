@@ -71,22 +71,13 @@ st.title("Welcome to Panda Theme Park! Please enjoy our attractions!") # 'st' st
 st.image(
     "po.jpg")
 
-init = {
-    "theme_filter": [],
-    "queue_slide": 120,
-    "height_range": (0, 250),
-    "toggle": False,
-}
-
-for key, default_val in init.items():
-    if key not in st.session_state:
-        st.session_state[key] = default_val
-
-def reset_choices():
+def init_choices():
     st.session_state.theme_filter = []
     st.session_state.queue_slide = 120
     st.session_state.height_range = (0,250)
     st.session_state.toggle = False
+
+init_choices()
 
 @st.dialog("Filters")
 def filter_dialog():
@@ -100,8 +91,6 @@ def filter_dialog():
     queue_slide = st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=120, key='queue_slide')
     height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=(0,250), key='height_range')
     toggle = st.toggle("Sort by queue time", key="toggle")
-    if st.button("Apply", type="primary"):
-        st.rerun()
 
 if st.button("⚙️ Filters", key="open_filters"):
     filter_dialog()
@@ -181,4 +170,4 @@ else:
     second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs)
 st.table(second_recs)    
 
-st.button("Reset Selections", on_click=reset_choices)
+st.button("Reset Selections", on_click=init_choices)
