@@ -92,17 +92,20 @@ toggle = st.session_state.toggle
 
 @st.dialog("Filters")
 def filter_dialog():
-    theme_filter = st.pills(
+    new_theme_filter = st.pills(
         "Themes",
         options=all_themes, 
         selection_mode="multi",
         label_visibility="collapsed",
-        key="theme_filter"
         )
-    queue_slide = st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=120, key='queue_slide')
-    height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=(0,250), key='height_range')
-    toggle = st.toggle("Sort by queue time", key="toggle")
+    new_queue_slide = st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=120)
+    new_height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=(0,250))
+    new_toggle = st.toggle("Sort by queue time")
     if st.button("Apply", type="primary"):
+        st.session_state.theme_filter = new_theme_filter
+        st.session_state.queue_slide = new_queue_slide
+        t.session_state.height_range = new_height_range
+        st.session_state.toggle = new_toggle
         st.rerun()
 
 if st.button("⚙️ Filters", key="open_filters"):
