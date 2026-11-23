@@ -79,7 +79,7 @@ DEFAULTS = {
 
 def init_dialogue():          
     st.session_state.d_height = (0, 250)
-    st.seesion_state.height_range = (0,250)
+    st.session_state.height_range = (0,250)
     st.session_state.d_theme = []
     st.session_state.d_queue = 120    
     st.session_state.d_h_enable = False
@@ -217,6 +217,7 @@ for attraction in second_recs:
             st.caption(f"⏱️ **Queue:** {attraction['queue_time']}")
         with col3:
             st.caption(f"📏 **Height:** {attraction['height_restriction']}")
+
 
 
 
