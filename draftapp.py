@@ -94,9 +94,9 @@ def filter_dialog():
     theme_filter = st.pills(
         "Themes",
         options=all_themes, 
-        selection_mode="multi",
+        selection_mode="multi",default=st.session_state.theme_filter,
         label_visibility="collapsed",
-        default=st.session_state.theme_filter)
+        )
     queue_slide = st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=st.session_state.queue_slide)
     height_enable = st.toggle("Enable Height Restriction", value=st.session_state.height_enable)
     if height_enable == True:
@@ -196,6 +196,7 @@ if st.session_state.toggle == True:
 else:
     second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs)
 st.table(second_recs)    
+
 
 
 
