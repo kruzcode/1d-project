@@ -179,14 +179,39 @@ if options == []:
     table_2 = 'Our Attractions'
     top_recs = []
 else:
-    st.write("Your Top Recommendations")
     top_recs = find_recommendations(ATTRACTIONS, options, queue_time)
-    st.table(top_recs)
+    if top_recs:
+        st.write("Your Top Recommendations")
+        for attraction in top_recs:
+            with st.container(border=True):  # Creates a nice visual panel/card box
+                st.subheader(attraction["name"])
+                st.write(attraction["description"])
+            
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    st.caption(f"🎯 **Theme:** {attraction['theme']}")
+                with col2:
+                    st.caption(f"⏱️ **Queue:** {attraction['queue_time']}")
+                with col3:
+                    st.caption(f"📏 **Height:** {attraction['height_restriction']}")
+    
     table_2 = 'You might also like...'
 
 st.write(table_2)
-if st.session_state.toggle == True:
+if st.session_state.toggle:
     second_recs = filter_recommendations_queue(ATTRACTIONS, options, queue_time, top_recs)
 else:
     second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs)
-st.table(second_recs)    
+for attraction in second_recs:
+    with st.container(border=True):
+        st.subheader(attraction["name"])
+        st.write(attraction["description"])
+        
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.caption(f"🎯 **Theme:** {attraction['theme']}")
+        with col2:
+            st.caption(f"⏱️ **Queue:** {attraction['queue_time']}")
+        with col3:
+            st.caption(f"📏 **Height:** {attraction['height_restriction']}")
+
