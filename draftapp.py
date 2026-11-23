@@ -103,7 +103,7 @@ def filter_dialog():
         selection_mode="multi",
         label_visibility="collapsed")
     st.slider("Your Queue Preference (min)", min_value=0, max_value=120)
-    st.toggle("Enable Height Restriction", key="height_enable")
+    st.toggle("Enable Height Restriction")
     if st.session_state.height_enable == True:
         st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250)
     st.toggle("Sort by queue time")
@@ -195,6 +195,7 @@ if toggle == True:
 else:
     second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs, height_enable)
 st.table(second_recs)    
+
 
 
 
