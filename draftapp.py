@@ -87,7 +87,7 @@ init_choices()
 
 @st.dialog("Filters")
 def filter_dialog():
-    st.pills(
+    theme_filter = st.pills(
         "Themes",
         options=all_themes, 
         selection_mode="multi",
@@ -97,9 +97,10 @@ def filter_dialog():
     queue_slide = st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=120, key='queue_slide')
     height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=(0,250), key='height_range')
     toggle = st.toggle("Sort by queue time", key="toggle")
+    return theme_filter, queue_slide, height_range, toggle
 
 if st.button("⚙️ Filters", key="open_filters"):
-    filter_dialog()
+    theme_filter, queue_slide, height_range, toggle = filter_dialog()
 
 def attraction_height(r):
     str = r["height_restriction"].replace("cm", "").strip()
