@@ -89,12 +89,6 @@ for k in DEFAULTS:
         st.session_state[k] = DEFAULTS[k]
 
 # only read the values AFTER the loop above
-theme_filter = st.session_state.theme_filter
-queue_slide = st.session_state.queue_slide
-height_enable = st.session_state.height_enable
-height_range = st.session_state.height_range
-toggle = st.session_state.toggle
-
 @st.dialog("Filters")
 def filter_dialog():
     st.pills(
@@ -194,6 +188,7 @@ if toggle == True:
 else:
     second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs, height_enable)
 st.table(second_recs)    
+
 
 
 
