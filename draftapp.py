@@ -80,11 +80,11 @@ DEFAULTS = {
 }
 
 def init_choices():          # for the Reset button: overwrites everything
-    st.session_state.theme_filter = []
-    st.session_state.queue_slide = 120
-    st.session_state.height_enable = False
-    st.session_state.height_range = (0, 250)
-    st.session_state.toggle = False
+    st.session_state.a = []
+    st.session_state.b = 120
+    st.session_state.c = False
+    st.session_state.d = (0, 250)
+    st.session_state.e = False
 # runs every rerun, but only fills in keys that don't exist yet
 for k in DEFAULTS:
     if k not in st.session_state:
@@ -99,12 +99,12 @@ def filter_dialog():
         selection_mode="multi",
         default=st.session_state.theme_filter,
         label_visibility="collapsed",
-        )
-    st.session_state.queue_slide = st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=st.session_state.queue_slide)
-    st.session_state.height_enable = st.toggle("Enable Height Restriction", value=st.session_state.height_enable)
+        key='a')
+    st.session_state.queue_slide = st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=st.session_state.queue_slide, key='b')
+    st.session_state.height_enable = st.toggle("Enable Height Restriction", value=st.session_state.height_enable, key='c')
     if st.session_state.height_enable == True:
-        st.session_state.height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=st.session_state.height_range)
-    st.session_state.toggle = st.toggle("Sort by queue time", value=st.session_state.toggle)
+        st.session_state.height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=st.session_state.height_range, key='d')
+    st.session_state.toggle = st.toggle("Sort by queue time", value=st.session_state.toggle, key='e')
       
     c1, c2 = st.columns(2)
 
@@ -197,6 +197,7 @@ if st.session_state.toggle == True:
 else:
     second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs)
 st.table(second_recs)    
+
 
 
 
