@@ -96,13 +96,12 @@ toggle = st.session_state.toggle
 
 @st.dialog("Filters")
 def filter_dialog():
-   st.pills(
+    st.pills(
         "Themes",
         options=all_themes, 
         selection_mode="multi",
         label_visibility="collapsed",
-        key="theme_filter"
-        )
+        key="theme_filter")
     st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=120, key='queue_slide')
     st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=(0,250), key='height_range')
     st.toggle("Sort by queue time", key="toggle")
@@ -185,4 +184,5 @@ else:
 st.table(second_recs)    
 
 st.button("Reset Selections", on_click=init_choices)
+
 
