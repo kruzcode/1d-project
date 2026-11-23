@@ -119,7 +119,7 @@ if st.button("⚙️ Filters", key="open_filters"):
 
 def check_height(attraction):
     if st.session_state.height_enable == True:
-        check_height = height_restriction(height_range, attraction_height(attraction))
+        check_height = height_restriction(st.session_state.height_range, attraction_height(attraction))
     else:
         check_height = True
     return check_height
@@ -193,6 +193,7 @@ if st.session_state.toggle == True:
 else:
     second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs)
 st.table(second_recs)    
+
 
 
 
