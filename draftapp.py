@@ -96,14 +96,14 @@ def filter_dialog():
         options=all_themes, 
         selection_mode="multi",
         default=st.session_state.theme_filter,
-        label_visibility="collapsed")
-    queue_slide = st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=st.session_state.queue_slide)
-    height_enable = st.toggle("Enable Height Restriction", value=st.session_state.height_enable)
+        label_visibility="collapsed", key="t_pill")
+    queue_slide = st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=st.session_state.queue_slide, key="q_slider")
+    height_enable = st.toggle("Enable Height Restriction", value=st.session_state.height_enable, key="h_toggle")
     if height_enable == True:
-        height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=st.session_state.height_range)
+        height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=st.session_state.height_range, key="h_slider")
     else:
         height_range = (0,250)
-    toggle = st.toggle("Sort by queue time", value=st.session_state.toggle)
+    toggle = st.toggle("Sort by queue time", value=st.session_state.toggle, key="dialogue_toggle")
     
     c1, c2, c3 = st.columns(3)
 
@@ -117,11 +117,11 @@ def filter_dialog():
         close_button = st.button("Close", type="primary", width="stretch")
     
     if clear_button:
-        st.session_state.theme_filter = theme_filter
-        st.session_state.queue_slide = queue_slide 
-        st.session_state.height_enable = height_enable 
-        st.session_state.height_range = height_range
-        st.session_state.toggle = toggle
+        st.session_state.t_pill = []
+        st.session_state.q_slider = 0
+        st.session_state.h_toggle = False
+        st.session_state.h_slider = (0,250)
+        st.session_state.dialogue_toggle = True
         init_choices()
     if save_button:
         st.session_state.theme_filter = theme_filter
@@ -213,6 +213,7 @@ if st.session_state.toggle == True:
 else:
     second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs)
 st.table(second_recs)    
+
 
 
 
