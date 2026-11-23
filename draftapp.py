@@ -71,11 +71,17 @@ st.title("Welcome to Panda Theme Park! Please enjoy our attractions!") # 'st' st
 st.image(
     "po.jpg")
 
+#initalize
+theme_filter = st.session_state.theme_filter
+queue_slide = st.session_state.queue_slide
+height_range = st.session_state.height_range
+toggle = st.session_state.toggle
+
 def init_choices():
-    global theme_filter = st.session_state.theme_filter = []
-    global queue_slide = st.session_state.queue_slide = 120
-    global height_range = st.session_state.height_range = (0,250)
-    global toggle = st.session_state.toggle = False
+    st.session_state.theme_filter = []
+    st.session_state.queue_slide = 120
+    st.session_state.height_range = (0,250)
+    st.session_state.toggle = False
 
 init_choices()
 
