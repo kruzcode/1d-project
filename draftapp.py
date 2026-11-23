@@ -80,8 +80,8 @@ DEFAULTS = {
 }
 
 def init_choices():          # used by the Reset button: overwrites everything
-    for k, v in DEFAULTS.items():
-        st.session_state[k] = v
+    for k in DEFAULTS.items():
+        st.session_state[k] = DEFAULTS[k]
 
     
 #initalize
