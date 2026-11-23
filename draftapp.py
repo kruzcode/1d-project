@@ -89,7 +89,7 @@ for k in DEFAULTS:
         st.session_state[k] = DEFAULTS[k]
 
 # only read the values AFTER the loop above
-@st.dialog("Filters")
+@st.dialog("Filters", on_dismiss="ignore")
 def filter_dialog():
     theme_filter = st.pills(
         "Themes",
@@ -193,6 +193,7 @@ if st.session_state.toggle == True:
 else:
     second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs)
 st.table(second_recs)    
+
 
 
 
