@@ -107,7 +107,7 @@ def filter_dialog():
     with c1:
         clear_button = st.button("Clear Selections", type="primary", width="stretch", on_click=init_dialogue)    
     with c2:
-        close_button = st.button("Close", type="primary", width="stretch")
+        close_button = st.button("Save & Close", type="primary", width="stretch")
     if close_button:
         st.rerun()
       
@@ -214,4 +214,5 @@ for attraction in second_recs:
             st.caption(f"⏱️ **Queue:** {attraction['queue_time']}")
         with col3:
             st.caption(f"📏 **Height:** {attraction['height_restriction']}")
+
 
