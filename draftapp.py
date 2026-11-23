@@ -114,6 +114,13 @@ def filter_dialog():
 if st.button("⚙️ Filters", key="open_filters"):
     filter_dialog()
 
+def check_height(attraction):
+    if height_enable == True:
+        check_height = height_restriction(height_range, attraction_height(attraction))
+    else:
+        check_height = True
+    return check_height
+
 def attraction_height(r):
     str = r["height_restriction"].replace("cm", "").strip()
     low, high = str.split("-")
@@ -139,41 +146,29 @@ def queue_cat(t):
 
 def filter_recommendations_queue(attractions_list, theme_choice, queue_choice, top_rec, height_enable):
     out = []
-    if height_enable == True:
-        check_height = height_restriction(height_range, attraction_height(attraction))
-    else:
-        check_height = True
     for time in queue_choice:                      
         for theme in theme_choice:                
             for attraction in attractions_list:    
-                if (theme in attraction["theme"]) and check_height and (time in attraction['queue_time']) and (attraction not in out) and ( attraction not in top_rec):
+                if (theme in attraction["theme"]) and check_height(attraction) and (time in attraction['queue_time']) and (attraction not in out) and ( attraction not in top_rec):
                     out.append(attraction)       
     return out
 
 def filter_recommendations_theme(attractions_list, theme_choice, queue_choice, top_rec, height_enable):
     out = []
-    if height_enable == True:
-        check_height = height_restriction(height_range, attraction_height(attraction))
-    else:
-        check_height = True
     for theme in theme_choice:                      
         for time in queue_choice:                
             for attraction in attractions_list:    
-                if (theme in attraction["theme"]) and check_height and (time in attraction['queue_time']) and (attraction not in out) and ( attraction not in top_rec):
+                if (theme in attraction["theme"]) and check_height(attraction) and (time in attraction['queue_time']) and (attraction not in out) and ( attraction not in top_rec):
                     out.append(attraction)       
     return out
     
 def find_recommendations(attractions_list, theme_choice, queue_choice, height_enable): #edited
     out = []
-    if height_enable == True:
-        check_height = height_restriction(height_range, attraction_height(attraction))
-    else:
-        check_height = True
     for time in queue_choice:
         for attraction in attractions_list:
             check_theme = sorted(attraction["theme"])
             sorted_theme_choice = sorted(", ".join(theme_choice))
-            if (check_theme == sorted_theme_choice) and (time in attraction['queue_time']) and check_height:
+            if (check_theme == sorted_theme_choice) and (time in attraction['queue_time']) and check_height(attraction):
                 out.append(attraction)
     return out
 
@@ -197,6 +192,7 @@ else:
 st.table(second_recs)    
 
 st.button("Reset Selections", on_click=init_choices)
+
 
 
 
