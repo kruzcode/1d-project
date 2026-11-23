@@ -65,9 +65,7 @@ ATTRACTIONS = [
     },
 ]
 
-
-st.title("Welcome to Panda Theme Park! Please enjoy our attractions!") # 'st' stands for streamlit (st.title -> same function as a print)
-# streamlit is to access specific UXs
+st.title("Welcome to Panda Theme Park! Please enjoy our attractions!")
 st.image(
     "po.jpg")
 
@@ -79,18 +77,17 @@ DEFAULTS = {
     "toggle": False,
 }
 
-def init_dialogue():          # for the Reset button: overwrites everything
+def init_dialogue():          
     st.session_state.d_theme = []
     st.session_state.d_queue = 120
     st.session_state.d_h_enable = False
     st.session_state.d_height = (0, 250)
     st.session_state.d_tog = False
-# runs every rerun, but only fills in keys that don't exist yet
+
 for k in DEFAULTS:
     if k not in st.session_state:
         st.session_state[k] = DEFAULTS[k]
 
-# only read the values AFTER the loop above
 @st.dialog("Filters", dismissible=False)
 def filter_dialog():
     st.session_state.theme_filter = st.pills(
@@ -107,17 +104,13 @@ def filter_dialog():
     st.session_state.toggle = st.toggle("Sort by queue time", value=st.session_state.toggle, key='d_tog')
       
     c1, c2 = st.columns(2)
-
     with c1:
-        clear_button = st.button("Clear Selections", type="primary", width="stretch", on_click=init_dialogue)
-    
+        clear_button = st.button("Clear Selections", type="primary", width="stretch", on_click=init_dialogue)    
     with c2:
         close_button = st.button("Close", type="primary", width="stretch")
-
     if close_button:
         st.rerun()
       
-
 if st.button("⚙️ Filters", key="open_filters"):
     filter_dialog()
 
@@ -197,9 +190,3 @@ if st.session_state.toggle == True:
 else:
     second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs)
 st.table(second_recs)    
-
-
-
-
-
-
