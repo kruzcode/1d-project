@@ -108,8 +108,10 @@ def filter_dialog():
     if st.button("Apply", type="primary") == True:
         st.rerun()
     else:
-        for k in DEFAULTS:
-            st.session_state[k] = DEFAULTS[k]
+        st.session_state.theme_filter=[]
+        st.session_state.queue_slide=120
+        st.session_state.height_range=(0, 250)
+        st.session_state.toggle =False
 
 if st.button("⚙️ Filters", key="open_filters"):
     filter_dialog()
@@ -185,6 +187,7 @@ else:
 st.table(second_recs)    
 
 st.button("Reset Selections", on_click=init_choices)
+
 
 
 
