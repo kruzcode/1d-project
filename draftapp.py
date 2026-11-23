@@ -113,7 +113,8 @@ def filter_dialog():
         st.session_state.height_range = height_range
         st.session_state.toggle = toggle
         st.rerun()
-    if st.button("Close", type="primary")
+    if st.button("Close", type="primary"):
+        st.rerun()
 
 if st.button("⚙️ Filters", key="open_filters"):
     filter_dialog()
@@ -194,6 +195,7 @@ if st.session_state.toggle == True:
 else:
     second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs)
 st.table(second_recs)    
+
 
 
 
