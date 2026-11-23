@@ -71,7 +71,7 @@ st.title("Welcome to Panda Theme Park! Please enjoy our attractions!") # 'st' st
 st.image(
     "po.jpg")
 
-
+global DEFAULTS
 DEFAULTS = {
     "theme_filter": [],
     "queue_slide": 120,
@@ -108,7 +108,8 @@ def filter_dialog():
     if st.button("Apply", type="primary") == True:
         st.rerun()
     else:
-        init_choices()
+        for k in DEFAULTS:
+            st.session_state[k] = DEFAULTS[k]
 
 if st.button("⚙️ Filters", key="open_filters"):
     filter_dialog()
@@ -184,5 +185,6 @@ else:
 st.table(second_recs)    
 
 st.button("Reset Selections", on_click=init_choices)
+
 
 
