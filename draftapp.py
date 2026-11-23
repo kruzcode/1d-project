@@ -104,17 +104,27 @@ def filter_dialog():
     else:
         height_range = (0,250)
     toggle = st.toggle("Sort by queue time", value=st.session_state.toggle)
-    st.button("Clear Selections", type="primary", on_click=init_choices)
     
-    if st.button("Save", type="primary"):
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        button1 = st.button("Clear Selections", type="primary", on_click=init_choices)
+    
+    with col2:
+        button2 = st.button("Save", type="primary")
+    
+    with col3:
+        button3 = st.button("Close", type="primary", on_click=st.rerun)
+        
+    if button2:
         st.session_state.theme_filter = theme_filter
         st.session_state.queue_slide = queue_slide 
         st.session_state.height_enable = height_enable 
         st.session_state.height_range = height_range
         st.session_state.toggle = toggle
         st.rerun()
-    if st.button("Close", type="primary"):
-        st.rerun()
+      
 
 if st.button("⚙️ Filters", key="open_filters"):
     filter_dialog()
@@ -195,6 +205,7 @@ if st.session_state.toggle == True:
 else:
     second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs)
 st.table(second_recs)    
+
 
 
 
