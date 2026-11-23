@@ -72,10 +72,10 @@ st.image(
     "po.jpg")
 
 def init_choices():
-    theme_filter = st.session_state.theme_filter = []
-    queue_slide = st.session_state.queue_slide = 120
-    height_range = st.session_state.height_range = (0,250)
-    toggle = st.session_state.toggle = False
+    global theme_filter = st.session_state.theme_filter = []
+    global queue_slide = st.session_state.queue_slide = 120
+    global height_range = st.session_state.height_range = (0,250)
+    global toggle = st.session_state.toggle = False
 
 init_choices()
 
