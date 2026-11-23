@@ -71,13 +71,21 @@ st.title("Welcome to Panda Theme Park! Please enjoy our attractions!") # 'st' st
 st.image(
     "po.jpg")
 
-def init_choices():
-    st.session_state.theme_filter = []
-    st.session_state.queue_slide = 120
-    st.session_state.height_range = (0,250)
-    st.session_state.toggle = False
 
-init_choices()
+DEFAULTS = {
+    "theme_filter": [],
+    "queue_slide": 120,
+    "height_range": (0, 250),
+    "toggle": False,
+}
+
+def init_choices():          # used by the Reset button: overwrites everything
+    for k, v in DEFAULTS.items():
+        st.session_state[k] = v
+
+for k, v in DEFAULTS.items():    # runs every rerun, only fills in missing keys
+    st.session_state.setdefault(k, v)
+    
 #initalize
 theme_filter = st.session_state.theme_filter
 queue_slide = st.session_state.queue_slide
@@ -96,10 +104,9 @@ def filter_dialog():
     queue_slide = st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=120, key='queue_slide')
     height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=(0,250), key='height_range')
     toggle = st.toggle("Sort by queue time", key="toggle")
-    return theme_filter, queue_slide, height_range, toggle
 
 if st.button("⚙️ Filters", key="open_filters"):
-    theme_filter, queue_slide, height_range, toggle = filter_dialog()
+    filter_dialog()
 
 def attraction_height(r):
     str = r["height_restriction"].replace("cm", "").strip()
