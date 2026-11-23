@@ -103,10 +103,7 @@ def filter_dialog():
     new_toggle = st.toggle("Sort by queue time", value=st.session_state.toggle)
 
     if st.button("Apply", type="primary"):
-        st.session_state.theme_filter = new_themes
-        st.session_state.queue_slide = new_queue
-        st.session_state.height_range = new_height
-        st.session_state.toggle = new_toggle
+
         st.rerun()
 
 if st.button("⚙️ Filters", key="open_filters"):
