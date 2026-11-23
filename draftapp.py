@@ -79,12 +79,16 @@ DEFAULTS = {
     "toggle": False,
 }
 
-def init_choices():          # used by the Reset button: overwrites everything
-    for k in DEFAULTS.items():
+def init_choices():          # for the Reset button: overwrites everything
+    for k in DEFAULTS:
         st.session_state[k] = DEFAULTS[k]
 
-    
-#initalize
+# runs every rerun, but only fills in keys that don't exist yet
+for k in DEFAULTS:
+    if k not in st.session_state:
+        st.session_state[k] = DEFAULTS[k]
+
+# only read the values AFTER the loop above
 theme_filter = st.session_state.theme_filter
 queue_slide = st.session_state.queue_slide
 height_range = st.session_state.height_range
