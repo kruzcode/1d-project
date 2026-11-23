@@ -142,7 +142,7 @@ def queue_cat(t):
         cat.append('long')
     return cat
 
-def filter_recommendations_queue(attractions_list, theme_choice, queue_choice, top_rec, height_enable):
+def filter_recommendations_queue(attractions_list, theme_choice, queue_choice, top_rec):
     out = []
     for time in queue_choice:                      
         for theme in theme_choice:                
@@ -151,7 +151,7 @@ def filter_recommendations_queue(attractions_list, theme_choice, queue_choice, t
                     out.append(attraction)       
     return out
 
-def filter_recommendations_theme(attractions_list, theme_choice, queue_choice, top_rec, height_enable):
+def filter_recommendations_theme(attractions_list, theme_choice, queue_choice, top_rec):
     out = []
     for theme in theme_choice:                      
         for time in queue_choice:                
@@ -160,7 +160,7 @@ def filter_recommendations_theme(attractions_list, theme_choice, queue_choice, t
                     out.append(attraction)       
     return out
     
-def find_recommendations(attractions_list, theme_choice, queue_choice, height_enable): #edited
+def find_recommendations(attractions_list, theme_choice, queue_choice): #edited
     out = []
     for time in queue_choice:
         for attraction in attractions_list:
@@ -178,16 +178,17 @@ if options == []:
     top_recs = []
 else:
     st.write("Your Top Recommendations")
-    top_recs = find_recommendations(ATTRACTIONS, options, queue_time, height_enable)
+    top_recs = find_recommendations(ATTRACTIONS, options, queue_time)
     st.table(top_recs)
     table_2 = 'You might also like...'
 
 st.write(table_2)
 if st.session_state.toggle == True:
-    second_recs = filter_recommendations_queue(ATTRACTIONS, options, queue_time, top_recs, height_enable)
+    second_recs = filter_recommendations_queue(ATTRACTIONS, options, queue_time, top_recs)
 else:
-    second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs, height_enable)
+    second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs)
 st.table(second_recs)    
+
 
 
 
