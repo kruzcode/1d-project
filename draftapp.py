@@ -83,8 +83,6 @@ def init_choices():          # used by the Reset button: overwrites everything
     for k, v in DEFAULTS.items():
         st.session_state[k] = v
 
-for k, v in DEFAULTS.items():    # runs every rerun, only fills in missing keys
-    st.session_state.setdefault(k, v)
     
 #initalize
 theme_filter = st.session_state.theme_filter
