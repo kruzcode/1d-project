@@ -101,6 +101,8 @@ def filter_dialog():
     st.session_state.height_enable = st.toggle("Enable Height Restriction", value=st.session_state.height_enable, key='d_h_enable')
     if st.session_state.height_enable == True:
         st.session_state.height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=st.session_state.height_range, key='d_height')
+    else:
+        st.session_state.height_range = st.session_state.d_height
     st.session_state.toggle = st.toggle("Sort by queue time", value=st.session_state.toggle, key='d_tog')
       
     c1, c2 = st.columns(2)
@@ -214,6 +216,7 @@ for attraction in second_recs:
             st.caption(f"⏱️ **Queue:** {attraction['queue_time']}")
         with col3:
             st.caption(f"📏 **Height:** {attraction['height_restriction']}")
+
 
 
 
