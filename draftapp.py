@@ -89,10 +89,6 @@ def init_dialogue():
     st.session_state.d_h_enable = False
     st.session_state.d_tog = False
 
-'''for k in DEFAULTS:
-    if k not in st.session_state:
-        st.session_state[k] = DEFAULTS[k]'''
-
 @st.dialog("Filters", dismissible=False)
 def filter_dialog():
     st.session_state.theme_filter = st.pills(
@@ -221,6 +217,7 @@ for attraction in second_recs:
             st.caption(f"⏱️ **Queue:** {attraction['queue_time']}")
         with col3:
             st.caption(f"📏 **Height:** {attraction['height_restriction']}")
+
 
 
 
