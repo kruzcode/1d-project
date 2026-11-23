@@ -91,15 +91,16 @@ for k in DEFAULTS:
 # only read the values AFTER the loop above
 @st.dialog("Filters")
 def filter_dialog():
-    st.pills(
+    theme_filter = st.pills(
         "Themes",
         options=all_themes, 
         selection_mode="multi",
         label_visibility="collapsed")
-    st.slider("Your Queue Preference (min)", min_value=0, max_value=120)
-    if st.toggle("Enable Height Restriction") == True:
-        st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250)
-    st.toggle("Sort by queue time")
+    queue_slide = st.slider("Your Queue Preference (min)", min_value=0, max_value=120)
+    height_enable = st.toggle("Enable Height Restriction")
+    if height_enable == True:
+        height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250)
+    toggle = st.toggle("Sort by queue time")
     st.button("Clear Selections", type="primary", on_click=init_choices)
     if st.button("Close Window", type="primary"):
         st.session_state.theme_filter = theme_filter
@@ -188,6 +189,7 @@ if st.session_state.toggle == True:
 else:
     second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs)
 st.table(second_recs)    
+
 
 
 
