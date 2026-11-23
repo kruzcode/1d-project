@@ -75,6 +75,7 @@ global DEFAULTS
 DEFAULTS = {
     "theme_filter": [],
     "queue_slide": 120,
+    "height_enable": False,
     "height_range": (0, 250),
     "toggle": False,
 }
@@ -91,6 +92,7 @@ for k in DEFAULTS:
 # only read the values AFTER the loop above
 theme_filter = st.session_state.theme_filter
 queue_slide = st.session_state.queue_slide
+height_enable = st.session_state.height_enable
 height_range = st.session_state.height_range
 toggle = st.session_state.toggle
 
@@ -183,6 +185,7 @@ else:
 st.table(second_recs)    
 
 st.button("Reset Selections", on_click=init_choices)
+
 
 
 
