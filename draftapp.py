@@ -103,8 +103,11 @@ def filter_dialog():
         label_visibility="collapsed",
         key="theme_filter")
     st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=120, key='queue_slide')
-    st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=(0,250), key='height_range')
+    st.toggle("Enable Height Restriction", key="height_enable")
+    if st.session_state.height_enable == True:
+        st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=(0,250), key='height_range')
     st.toggle("Sort by queue time", key="toggle")
+    st.button("Clear Selections", on_click=init_choices)
 
 if st.button("⚙️ Filters", key="open_filters"):
     filter_dialog()
@@ -180,6 +183,7 @@ else:
 st.table(second_recs)    
 
 st.button("Reset Selections", on_click=init_choices)
+
 
 
 
