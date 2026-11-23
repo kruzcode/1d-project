@@ -108,14 +108,16 @@ def filter_dialog():
     c1, c2, c3 = st.columns(3)
 
     with c1:
-        clear_button = st.button("Clear Selections", type="primary", width="stretch", on_click=init_choices)
+        clear_button = st.button("Clear Selections", type="primary", width="stretch")
     
     with c2:
         save_button = st.button("Save", type="primary", width="stretch")
     
     with c3:
         close_button = st.button("Close", type="primary", width="stretch")
-        
+    if clear_button:
+        init_choices()
+    
     if save_button:
         st.session_state.theme_filter = theme_filter
         st.session_state.queue_slide = queue_slide 
@@ -206,6 +208,7 @@ if st.session_state.toggle == True:
 else:
     second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs)
 st.table(second_recs)    
+
 
 
 
