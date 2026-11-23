@@ -110,6 +110,8 @@ def filter_dialog():
         st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=(0,250), key='height_range')
     st.toggle("Sort by queue time", key="toggle")
     st.button("Clear Selections", on_click=init_choices)
+    if st.button("Close", type="primary"):
+        st.rerun()
 
 if st.button("⚙️ Filters", key="open_filters"):
     filter_dialog()
@@ -191,7 +193,7 @@ else:
     second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs, height_enable)
 st.table(second_recs)    
 
-st.button("Reset Selections", on_click=init_choices)
+
 
 
 
