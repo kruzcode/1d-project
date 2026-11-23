@@ -105,12 +105,14 @@ def filter_dialog():
     new_queue_slide = st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=120)
     new_height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=(0,250))
     new_toggle = st.toggle("Sort by queue time")
-    if st.button("Apply", type="primary"):
+    if st.button("Apply", type="primary") == True:
         st.session_state.theme_filter = new_theme_filter
         st.session_state.queue_slide = new_queue_slide
         t.session_state.height_range = new_height_range
         st.session_state.toggle = new_toggle
         st.rerun()
+    else:
+        init_choices()
 
 if st.button("⚙️ Filters", key="open_filters"):
     filter_dialog()
