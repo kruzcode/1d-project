@@ -206,7 +206,7 @@ st.write(table_2)
 if st.session_state.toggle:
     second_recs = filter_recommendations_queue(ATTRACTIONS, options, queue_time, top_recs)
 else:
-    second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs)
+    second_recs = filter_recommendations_queue(ATTRACTIONS, queue_time, options, top_recs)
 for attraction in second_recs:
     with st.container(border=True):
         st.subheader(attraction["name"])
