@@ -172,7 +172,7 @@ def find_recommendations(attractions_list, theme_choice, queue_choice): #edited
     for time in queue_choice:
         for attraction in attractions_list:
             check_theme = sorted(attraction["theme"])
-            sorted_theme_choice = sorted(theme_choice)
+            sorted_theme_choice = sorted(", ".join(theme_choice))
             if (sorted_theme_choice == check_theme) and (time in attraction['queue_time']) and check_height(attraction):
                 out.append(attraction)
     return out
