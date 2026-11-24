@@ -1,0 +1,237 @@
+import streamlit as st
+
+all_themes = ['immersive', 'thrill', 'sightseeing', 'relaxation']
+ATTRACTIONS = [
+    {
+        "name": "Mickey & Minnie's Runaway Railway",
+        "theme": "thrill, immersive, sightseeing", "queue_time": "short",
+        "height_restriction": "0-250 cm",
+        "description": "A trackless dark ride that takes guests straight into a chaotic, colorful Mickey Mouse cartoon short."
+    },
+    {
+        "name": "Sorcerer's Apprentice: Broomstick Brigade",
+        "theme": "thrill, immersive", "queue_time": "medium",
+        "height_restriction": "102-250 cm",
+        "description": "A swinging suspended coaster where riders dodge overflowing water buckets and enchanted brooms inside Yen Sid's tower."
+    },
+    {
+        "name": "Furious Five: Valley of Peace Coaster",
+        "theme": "thrill, sightseeing", "queue_time": "long",
+        "height_restriction": "102-250 cm",
+        "description": "A high-flying launched coaster featuring near-miss elements and inversions themed around the acrobatic fighting styles of Tigress, Crane, Viper, Monkey, and Mantis."
+    },
+    {
+        "name": "Kung Fu Panda: Journey of the Dragon Warrior",
+        "theme": "sightseeing, relaxation, immersive", "queue_time": "medium",
+        "height_restriction": "0-250 cm",
+        "description": "A scenic indoor boat ride through the Jade Palace and the Spirit Realm as Po battles Kai."
+    },
+    {
+        "name": "Buzz Lightyear's Star Command Drop",
+        "theme": "thrill", "queue_time": "long",
+        "height_restriction": "102-250 cm",
+        "description": "A thrilling drop-tower ride where riders help Buzz launch into hyperspace to defend the Gamma Quadrant from Emperor Zurg."
+    },
+    {
+        "name": "Mickey's PhilharMagic",
+        "theme": "relaxation", "queue_time": "short",
+        "height_restriction": "0-250 cm",
+        "description": "A 3D musical film experience where Donald Duck steals Mickey's sorcerer hat, sending the audience tumbling through classic animated worlds."
+    },
+    {
+        "name": "Slinky Dog Dash",
+        "theme": "thrill, immersive, sightseeing", "queue_time": "medium",
+        "height_restriction": "90-250 cm",
+        "description": "A family coaster set in Andy's backyard where riders launch across tracks built from his Mega Coaster Play Kit."
+    },
+    {
+        "name": "Toy Story Mania!",
+        "theme": "immersive", "queue_time": "long",
+        "height_restriction": "0-250 cm",
+        "description": "An interactive 4D carnival-game attraction where riders wear 3D glasses and launch virtual darts, rings, and pies at targets."
+    },
+    {
+        "name": "Steamboat Willie's River Race",
+        "theme": "relaxation, sightseeing, thrill", "queue_time": "short",
+        "height_restriction": "90-250 cm",
+        "description": "A family-friendly water flume ride styled in classic 1928 black-and-white animation, complete with whistling steamboats and slapstick gags."
+    },
+    {
+        "name": "Po's Noodle Bowl Spin",
+        "theme": "relaxation, immersive", "queue_time": "medium",
+        "height_restriction": "81-250 cm",
+        "description": "A chill teacup-style flat ride set inside Mr. Ping's noodle shop, where oversized soup bowls spin and tilt to a lively kung fu soundtrack."
+    },
+]
+
+st.title("Welcome to Panda Theme Park! Please enjoy our attractions!")
+st.image(
+    "po.jpg")
+
+DEFAULTS = {
+    "theme_filter": [],
+    "queue_slide": 120,
+    "height_enable": False,
+    "height_range": (0, 250),
+    "toggle": False,
+}
+for key in DEFAULTS:
+    if key not in st.session_state:
+        st.session_state[key] = DEFAULTS[key]
+
+def init_dialogue():          
+    st.session_state.theme_filter = []
+    st.session_state.queue_slide = 120
+    st.session_state.height_range = (0,250)
+    st.session_state.toggle = False
+    
+    st.session_state.d_height = (0, 250)
+    st.session_state.d_theme = [] 
+    st.session_state.d_queue = 120
+    st.session_state.d_h_enable = False
+    st.session_state.d_tog = False
+
+@st.dialog("Filters", dismissible=False)
+def filter_dialog():
+    st.session_state.theme_filter = st.pills(
+        "Themes",
+        options=all_themes, 
+        selection_mode="multi",
+        default=st.session_state.theme_filter,
+        label_visibility="collapsed",
+        key='d_theme')
+    st.session_state.queue_slide = st.slider("Your Queue Preference (min)", min_value=0, max_value=120, value=st.session_state.queue_slide, key='d_queue')
+    st.session_state.height_enable = st.toggle("Enable Height Restriction", value=st.session_state.height_enable, key='d_h_enable')
+    if st.session_state.height_enable == True:
+        st.session_state.height_range = st.slider("Your Group's Height Range (cm)", min_value=0, max_value=250, value=st.session_state.height_range, key='d_height')
+    else:
+       pass
+    st.session_state.toggle = st.toggle("Sort by queue time", value=st.session_state.toggle, key='d_tog')
+      
+    c1, c2 = st.columns(2)
+    with c1:
+        clear_button = st.button("Clear Selections", type="primary", width="stretch", on_click=init_dialogue)    
+    with c2:
+        close_button = st.button("Save & Close", type="primary", width="stretch")
+    if close_button:
+        st.rerun()
+      
+if st.button("⚙️ Filters", key="open_filters"):
+    filter_dialog()
+
+def check_height(attraction):
+    if st.session_state.height_enable == True:
+        check_height = height_restriction(st.session_state.height_range, attraction_height(attraction))
+    else:
+        check_height = True
+    return check_height
+
+def attraction_height(r):
+    str = r["height_restriction"].replace("cm", "").strip()
+    low, high = str.split("-")
+    return (int(low), int(high))
+
+def height_restriction(height_ran, height_res):
+    x1, x2 = height_res
+    y1, y2 = height_ran
+    if (x1 <= y1) and (x2 >= y2):
+        return True
+    else:
+        return False
+    
+def queue_cat(t):
+    cat = []
+    if t >= 0:
+        cat.append('short')
+    if t > 40:
+        cat.append('medium')
+    if t > 80:
+        cat.append('long')
+    return cat
+
+def filter_recommendations_queue(attractions_list, theme_choice, queue_choice, top_rec):
+    out = []
+    for time in queue_choice:                      
+        for theme in theme_choice:                
+            for attraction in attractions_list:    
+                if (theme in attraction["theme"]) and check_height(attraction) and (time in attraction['queue_time']) and (attraction not in out) and (attraction not in top_rec):
+                    out.append(attraction)       
+    return out
+
+def filter_recommendations_theme(attractions_list, theme_choice, queue_choice, top_rec):
+    out = []
+    for theme in theme_choice:                      
+        for time in queue_choice:                
+            for attraction in attractions_list:    
+                if (theme in attraction["theme"]) and check_height(attraction) and (time in attraction['queue_time']) and (attraction not in out) and (attraction not in top_rec):
+                    out.append(attraction)       
+    return out
+    
+def find_recommendations(attractions_list, theme_choice, queue_choice): #edited
+    out = []
+    for time in queue_choice:
+        for attraction in attractions_list:
+            check_theme = sorted(attraction["theme"])
+            sorted_theme_choice = sorted(", ".join(theme_choice))
+            if (sorted_theme_choice == check_theme) and (time in attraction['queue_time']) and check_height(attraction):
+                out.append(attraction)
+    return out
+
+options = list( st.session_state.theme_filter )  
+queue_time = queue_cat(st.session_state.queue_slide)
+if options == []:
+    options=all_themes
+    table_2 = 'Our Attractions'
+    top_recs = []
+else:
+    top_recs = find_recommendations(ATTRACTIONS, options, queue_time)
+    if top_recs:
+        st.write("Your Top Recommendations")
+        for attraction in top_recs:
+            with st.container(border=True):  # Creates a nice visual panel/card box
+                st.subheader(attraction["name"])
+                st.write(attraction["description"])
+            
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    st.caption(f"🎯 **Theme:** {attraction['theme']}")
+                with col2:
+                    st.caption(f"⏱️ **Queue:** {attraction['queue_time']}")
+                with col3:
+                    st.caption(f"📏 **Height:** {attraction['height_restriction']}")
+    
+    table_2 = 'You might also like...'
+
+st.write(table_2)
+if st.session_state.toggle:
+    second_recs = filter_recommendations_queue(ATTRACTIONS, options, queue_time, top_recs)
+else:
+    second_recs = filter_recommendations_theme(ATTRACTIONS, options, queue_time, top_recs)
+for attraction in second_recs:
+    with st.container(border=True):
+        st.subheader(attraction["name"])
+        st.write(attraction["description"])
+        
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.caption(f"🎯 **Theme:** {attraction['theme']}")
+        with col2:
+            st.caption(f"⏱️ **Queue:** {attraction['queue_time']}")
+        with col3:
+            st.caption(f"📏 **Height:** {attraction['height_restriction']}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
