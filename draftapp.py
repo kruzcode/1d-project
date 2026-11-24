@@ -154,7 +154,7 @@ def filter_recommendations_queue(attractions_list, theme_choice, queue_choice, t
     for time in queue_choice:                      
         for theme in theme_choice:                
             for attraction in attractions_list:    
-                if (theme in attraction["theme"]) and check_height(attraction) and (time in attraction['queue_time']) and (attraction not in out) and ( attraction not in top_rec):
+                if (theme in attraction["theme"]) and check_height(attraction) and (time in attraction['queue_time']) and (attraction not in out) and (attraction not in top_rec):
                     out.append(attraction)       
     return out
 
@@ -163,7 +163,7 @@ def filter_recommendations_theme(attractions_list, theme_choice, queue_choice, t
     for theme in theme_choice:                      
         for time in queue_choice:                
             for attraction in attractions_list:    
-                if (theme in attraction["theme"]) and check_height(attraction) and (time in attraction['queue_time']) and (attraction not in out) and ( attraction not in top_rec):
+                if (theme in attraction["theme"]) and check_height(attraction) and (time in attraction['queue_time']) and (attraction not in out) and (attraction not in top_rec):
                     out.append(attraction)       
     return out
     
