@@ -60,7 +60,7 @@ ATTRACTIONS = [
     {
         "name": "Buzz Lightyear's Star Command Drop",
         "theme": "thrill", "queue_time": "long",
-        "height_restriction": "102-250 cm",
+        "height_restriction": "0-250 cm",
         "description": "A thrilling drop-tower ride where riders help Buzz launch into hyperspace to defend the Gamma Quadrant from Emperor Zurg."
     },
     {
